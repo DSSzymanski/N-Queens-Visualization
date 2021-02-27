@@ -2,8 +2,8 @@ Design
 1. Design simple base html page to display project. Will design better later.
 	*Completed* 1. Canvas object to display grid
 	*Completed* 2. Sliding button or drop down to choose grid size (N)
-	3. Button for solving
-	4. Step object
+	*Completed* 3. Button for solving
+	*Completed* 4. Step counter object
 2. Javascript
 	1. Draw grid (NxN)
 	2. Create object to store queen position array (Q-arr)
