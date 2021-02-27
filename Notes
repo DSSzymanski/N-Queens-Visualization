@@ -1,0 +1,22 @@
+Design
+1. Design simple base html page to display project. Will design better later.
+	*Completed* 1. Canvas object to display grid
+	*Completed* 2. Sliding button or drop down to choose grid size (N)
+	3. Button for solving
+	4. Step object
+2. Javascript
+	1. Draw grid (NxN)
+	2. Create object to store queen position array (Q-arr)
+	3. Map Q-arr to grid
+	4. Implement solving methods
+		1. Types
+			1. Random
+			2. DFS
+			3. DFS with state checking
+			4. Research other approaches
+	5. Break up solving methods into step by step to display on grid
+		1. Increment Step object
+		2. Display Queen on grid
+		3. Pause
+3. CSS
+	1. Beautify web page
