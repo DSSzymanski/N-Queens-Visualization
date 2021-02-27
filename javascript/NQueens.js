@@ -1,11 +1,11 @@
 function init() {
 	var mainDiv = document.querySelector("#main");
-	init_header(mainDiv);
-	init_slider(mainDiv);
+	init_title(mainDiv);
+	init_taskbar(mainDiv);
 	init_canvas(mainDiv);
 };
 
-function init_header(mainDiv) {
+function init_title(mainDiv) {
 	var div = document.createElement("div");
 	var text = document.createElement("h1");
 	header_text = "N-Queens Solver";
@@ -14,7 +14,15 @@ function init_header(mainDiv) {
 	mainDiv.appendChild(div);
 };
 
-function init_slider(mainDiv) {
+function init_taskbar(mainDiv) {
+	var div = document.createElement("div");
+	div.id = "taskbar";
+	init_slider(div);
+	init_solveBtn(div);
+	mainDiv.appendChild(div);
+};	
+
+function init_slider(container) {
 	var div = document.createElement("div");
 	div.id = "slider_container";
 	
@@ -33,8 +41,24 @@ function init_slider(mainDiv) {
 	
 	div.appendChild(slider);
 	div.appendChild(text);
-	mainDiv.appendChild(div);
-}
+	container.appendChild(div);
+};
+
+function init_solveBtn(container) {
+	var div = document.createElement("div");
+	div.id = "solveBtn_container";
+
+	var solveBtn = document.createElement("button");
+	solveBtn.id = "solveBtn";
+	solveBtn.innerText = "Solve";
+
+	solveBtn.onclick = function() {
+		//TODO: fill in button
+	}
+
+	div.appendChild(solveBtn);
+	container.appendChild(div);
+};
 
 function init_canvas(mainDiv) {
 	var div = document.createElement("div");

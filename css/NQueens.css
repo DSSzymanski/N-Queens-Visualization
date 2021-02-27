@@ -2,6 +2,11 @@ div {
 	text-align: center;
 }
 
+#taskbar {
+	display: flex;
+	justify-content: center;
+}
+
 #canvas_div {
 	display: flex;
 	justify-content: center;
