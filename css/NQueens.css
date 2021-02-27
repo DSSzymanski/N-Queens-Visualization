@@ -1,0 +1,8 @@
+div {
+	text-align: center;
+}
+
+#canvas_div {
+	display: flex;
+	justify-content: center;
+}
