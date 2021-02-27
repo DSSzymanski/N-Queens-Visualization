@@ -2,7 +2,7 @@ div {
 	text-align: center;
 }
 
-#taskbar {
+#taskbar, #stepCounter_container {
 	display: flex;
 	justify-content: center;
 }

@@ -3,6 +3,7 @@ function init() {
 	init_title(mainDiv);
 	init_taskbar(mainDiv);
 	init_canvas(mainDiv);
+	init_stepCounter(mainDiv);
 };
 
 function init_title(mainDiv) {
@@ -67,7 +68,25 @@ function init_canvas(mainDiv) {
 	canvas.id = "chess_board";
 	canvas.setAttribute("width", "640px");
 	canvas.setAttribute("height", "640px");
+	canvas.setAttribute("style", "border:1px solid black");
 	div.appendChild(canvas);
 	mainDiv.appendChild(div);
 	draw_canvas(canvas, 8, []);
+};
+
+function init_stepCounter(mainDiv) {
+	var div = document.createElement("div");
+	div.id = "stepCounter_container";
+
+	var label = document.createElement("label");
+	label.id = "stepCounter_label";
+	label.innerText = "Step count:";
+
+	var div2 = document.createElement("div");
+	div2.id = "steps";
+	div2.innerText = "0";
+
+	div.appendChild(label);
+	div.appendChild(div2);
+	mainDiv.appendChild(div);
 };
