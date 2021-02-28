@@ -26,6 +26,19 @@ function draw_canvas(board, tiles, curr_queens) {
 	}
 };
 
+function draw_queen(board, size, pos) {
+	var spacing = board.width/size;
+	var ctx = board.getContext("2d");
+	ctx.font = "36px Arial";
+	ctx.fillStyle = "red";
+
+	//x_pos = x column + offset
+	var x_pos = (pos[0] * spacing) + (spacing/3);
+	//y_pos = y row + offset
+	var y_pos = (pos[1] * spacing) + 2*(spacing/3);
+	ctx.fillText("Q", x_pos, y_pos);
+}
+
 function draw_queens(board, spacing, curr_queens) {
 	//get context and set up for drawing queens
 	var ctx = board.getContext("2d");
@@ -40,4 +53,4 @@ function draw_queens(board, spacing, curr_queens) {
 		var y_pos = (queen * spacing) + 2*(spacing/3);
 		ctx.fillText("Q", x_pos, y_pos);
 	});
-}
+};

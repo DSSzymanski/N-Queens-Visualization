@@ -82,7 +82,6 @@ function init_slider(container) {
 		text.innerText = this.value;
 	}
 	
-
 	//add to slider container and container param
 	div.appendChild(slider);
 	div.appendChild(text);
@@ -108,7 +107,11 @@ function init_solveBtn(container) {
 
 	//onclick will start solving for the algorithm
 	solveBtn.onclick = function() {
-		//TODO: fill in button
+		var canvas = document.getElementById("chess_board");
+		var slider = document.getElementById("size_slider");
+		console.log(slider.value);
+		solve(canvas, slider.value, []);
+
 	}
 
 	//add to container element and to the container param
