@@ -6,8 +6,8 @@
 *@param {int} size: size of the board. Used as a param within the drawing functions as
 *	well as checking if the board is completely solved and as a bound for the for loops
 *	that check all rows for possible queen tiles.
-*@param {array} arr: array used for storing current queen locations for the recursive
-*	function calls. First call to the solve function can just take an empty array.
+*@param {array} arr: array of ints representing currently placed queens of position
+*	[row, col] = [index of array, data at index]
 *@returns bool: Returns boolean value for if the board size has a solution or not.
 *	True represents the board size being solved, false represents no soluion.
 */
@@ -37,7 +37,8 @@ function solve(board, size, arr) {
 
 /*
 *check_constraints() is a general function that calls functions to check every constraint.
-*@param {array} arr: array of currently valid queen locations.
+*@param {array} arr: array of ints representing currently placed queens of position
+*	[row, col] = [index of array, data at index]
 *@param {int} row: location of next location to check.
 *@returns {boolean}: returns boolean value of true if the location passed all constraints,
 *	false otherwise.
@@ -57,7 +58,8 @@ function check_constraints(arr, row) {
 
 /*
 *check_upper_diag() checks if the queen attacks any queen in the upper left diagonal position.
-*@param {array} arr: array of currently valid queen locations.
+*@param {array} arr: array of ints representing currently placed queens of position
+*	[row, col] = [index of array, data at index]
 *@param {int} row: location of next location to check.
 *@returns {boolean}: returns boolean value of true if the location passed false otherwise.
 */
@@ -74,7 +76,8 @@ function check_upper_diag(arr, row) {
 
 /*
 *check_lower_diag() checks if the queen attacks any queen in the lower left diagonal position.
-*@param {array} arr: array of currently valid queen locations.
+*@param {array} arr: array of ints representing currently placed queens of position
+*	[row, col] = [index of array, data at index]
 *@param {int} row: location of next location to check.
 *@returns {boolean}: returns boolean value of true if the location passed false otherwise.
 */
@@ -91,7 +94,8 @@ function check_lower_diag(arr, row) {
 
 /*
 *check_row() checks if the queen attacks any queen in the same row. Simple array check.
-*@param {array} arr: array of currently valid queen locations.
+*@param {array} arr: array of ints representing currently placed queens of position
+*	[row, col] = [index of array, data at index]
 *@param {int} row: location of next location to check.
 *@returns {boolean}: returns boolean value of true if the location passed false otherwise.
 */

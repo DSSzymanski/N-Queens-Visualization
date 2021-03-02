@@ -1,3 +1,12 @@
+/*
+*draw_canvas() is the function used to draw the entire canvas object. Called when backtracking/
+*removing queens from the board, initial page load, and when drawing the board upon slider movement.
+*@param {canvas node} board: main canvas node for drawing board and pieces.
+*@param {int} tiles: dimensions of board in tiles (board is tilesXtiles size).
+*@param {array} curr_queens: array of ints representing currently placed queens of position
+*	[row, col] = [index of array, data at index]. This will be an empty array before algorithm is
+* 	started.
+*/
 function draw_canvas(board, tiles, curr_queens) {
 	//get context
 	var ctx = board.getContext("2d");
@@ -30,10 +39,13 @@ function draw_canvas(board, tiles, curr_queens) {
 };
 
 function draw_queen(board, size, pos) {
-	var spacing = board.width/size;
+	//get context and set up for drawing queens
 	var ctx = board.getContext("2d");
 	ctx.font = "36px Arial";
 	ctx.fillStyle = "red";
+
+	//used to offset and place queens
+	var spacing = board.width/size;
 
 	//x_pos = x column + offset
 	var x_pos = (pos[0] * spacing) + (spacing/3);
@@ -42,12 +54,23 @@ function draw_queen(board, size, pos) {
 	ctx.fillText("Q", x_pos, y_pos);
 }
 
+/*
+*draw_queens() is the function used to draw the currently placed queens on the canvas in black to
+*	represent queens being valid and expanded.
+*@param {canvas node} board: main canvas node for drawing board and pieces.
+*@param {int} size: dimensions of board in tiles (board is tilesXtiles size).
+*@param {array} curr_queens: array of ints representing currently placed queens of position
+*	[row, col] = [index of array, data at index]. This will be an empty array before algorithm is
+* 	started.
+*/
 function draw_queens(board, size, curr_queens) {
 	//get context and set up for drawing queens
 	var ctx = board.getContext("2d");
-	var spacing = board.width/size;
 	ctx.font = "36px Arial";
 	ctx.fillStyle = "black";
+
+	//used to offset and place queens
+	var spacing = board.width/size;
 	
 	//draw queens to board
 	curr_queens.forEach((queen, index) => {
