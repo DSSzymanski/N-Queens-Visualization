@@ -5,8 +5,8 @@ Design
 	*Completed* 3. Button for solving
 	*Completed* 4. Step counter object
 2. Javascript
-	1. Draw grid (NxN)
-	2. Create object to store queen position array (Q-arr)
+	*Completed* 1. Draw grid (NxN)
+	*Completed* 2. Create object to store queen position array (Q-arr)
 	3. Map Q-arr to grid
 	4. Implement solving methods
 		1. Types

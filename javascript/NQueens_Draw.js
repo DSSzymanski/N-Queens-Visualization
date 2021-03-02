@@ -1,7 +1,6 @@
 function draw_canvas(board, tiles, curr_queens) {
-	//get context and set it up for drawing the board
+	//get context
 	var ctx = board.getContext("2d");
-	ctx.fillStyle = "green";
 
 	//calculates spacing for:
 	//splitting the board into tiles as given above
@@ -12,17 +11,21 @@ function draw_canvas(board, tiles, curr_queens) {
 	for (var x = 0; x < board.width; x += spacing){
 		for (var y = 0; y < board.height; y += spacing) {
 			//fills square with green dark space if passes
-			//skips if fails
-			if ((x+y)%160 === 0){
-				ctx.rect(x, y, spacing, spacing);
-				ctx.fill();
+			//white square if fails
+			if ((x+y)%(2*spacing) === 0){
+				ctx.fillStyle = "green";
+				ctx.fillRect(x, y, spacing, spacing);
+			}
+			else {
+				ctx.fillStyle = "white";
+				ctx.fillRect(x, y, spacing, spacing);
 			}
 		}
 	}
 	//Draw Queens on board
 	//TODO: will need out of bounds error checking later
 	if (curr_queens.length !== 0){
-		draw_queens(board, spacing, curr_queens);
+		draw_queens(board, tiles, curr_queens);
 	}
 };
 
@@ -39,9 +42,10 @@ function draw_queen(board, size, pos) {
 	ctx.fillText("Q", x_pos, y_pos);
 }
 
-function draw_queens(board, spacing, curr_queens) {
+function draw_queens(board, size, curr_queens) {
 	//get context and set up for drawing queens
 	var ctx = board.getContext("2d");
+	var spacing = board.width/size;
 	ctx.font = "36px Arial";
 	ctx.fillStyle = "black";
 	

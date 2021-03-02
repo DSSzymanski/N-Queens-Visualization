@@ -1,5 +1,20 @@
 function solve(board, size, arr) {
-	break;
+	if (arr.length === size) {
+		console.log(arr);
+		return true;
+	}
+	for (var row = 0; row < size; row += 1) {
+		if (check_constraints(arr, row) === true) {
+			arr.push(row);
+			draw_canvas(board, size, arr);
+			if (solve(board, size, arr) === true) {
+				return true;
+			}
+			arr.pop();
+			draw_canvas(board, size, arr);
+		}
+	}
+	return false;
 }
 
 function check_constraints(arr, row) {

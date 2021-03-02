@@ -109,7 +109,8 @@ function init_solveBtn(container) {
 	solveBtn.onclick = function() {
 		var canvas = document.getElementById("chess_board");
 		var slider = document.getElementById("size_slider");
-		solve(canvas, slider.value, []);
+		console.log(slider.value);
+		solve(canvas, 8, []);
 	}
 
 	//add to container element and to the container param
