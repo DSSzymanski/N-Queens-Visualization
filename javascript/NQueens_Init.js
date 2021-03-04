@@ -73,7 +73,7 @@ function init_slider(container) {
 	slider.type = "range";
 	slider.min = "1";
 	slider.max = "20";
-	slider.value = "8";
+	slider.value = "7";
 	slider.id = "size_slider";
 
 	//functionality to display the sliders value in the text element
@@ -81,6 +81,7 @@ function init_slider(container) {
 	text.innerText = slider.value;
 	slider.oninput = function() {
 		text.innerText = this.value;
+		draw_canvas(document.getElementById("chess_board"), this.value, [])
 	}
 	
 	//add to slider container and container param
@@ -134,14 +135,13 @@ function init_canvas(container) {
 	canvas.id = "chess_board";
 	canvas.setAttribute("width", "640px");
 	canvas.setAttribute("height", "640px");
-	canvas.setAttribute("style", "border:1px solid black");
 
 	//add to container element and container param
 	div.appendChild(canvas);
 	container.appendChild(div);
 
 	//get default value from slider and draw blank board to start
-	var default_size = document.getElementById("size_slider").value;
+	const default_size = document.getElementById("size_slider").value;
 	draw_canvas(canvas, default_size, []);
 };
 

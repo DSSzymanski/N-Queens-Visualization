@@ -16,27 +16,41 @@ function draw_canvas(board, tiles, curr_queens) {
 	//spacing the queens on the squares
 	var spacing = board.width/tiles;
 
+	var j = 0;
 	//draw board by alternating spaces in which to draw
 	for (var x = 0; x < board.width; x += spacing){
+		var i = 0;
 		for (var y = 0; y < board.height; y += spacing) {
 			//fills square with green dark space if passes
 			//white square if fails
-			if ((x+y)%(2*spacing) === 0){
+			if ((i+j)%2 === 0) {
+				console.log(x,y,x+spacing,y+spacing,"green");
 				ctx.fillStyle = "green";
 				ctx.fillRect(x, y, spacing, spacing);
 			}
 			else {
+				console.log(x,y,x+spacing,y+spacing,"white");
 				ctx.fillStyle = "white";
 				ctx.fillRect(x, y, spacing, spacing);
 			}
+			i += 1;
 		}
+		j += 1;
 	}
+	draw_border(board);
 	//Draw Queens on board
 	//TODO: will need out of bounds error checking later
 	if (curr_queens.length !== 0){
 		draw_queens(board, tiles, curr_queens);
 	}
 };
+
+function draw_border(board) {
+	var ctx = board.getContext("2d");
+
+	ctx.strokeStyle = "black";
+	ctx.strokeRect(0, 0, board.width, board.height);
+}
 
 function draw_queen(board, size, pos) {
 	//get context and set up for drawing queens
