@@ -73,7 +73,7 @@ function init_slider(container) {
 	slider.type = "range";
 	slider.min = "1";
 	slider.max = "20";
-	slider.value = "7";
+	slider.value = "8";
 	slider.id = "size_slider";
 
 	//functionality to display the sliders value in the text element
@@ -110,7 +110,8 @@ function init_solveBtn(container) {
 	//onclick will start solving for the algorithm
 	solveBtn.onclick = function() {
 		const canvas = document.getElementById("chess_board");
-		const value = Number(document.getElementById("size_slider").value); 
+		const value = Number(document.getElementById("size_slider").value);
+		reset_stepCounter();
 		solve(canvas, value, []);
 	}
 
@@ -163,12 +164,12 @@ function init_stepCounter(container) {
 	label.innerText = "Step count:";
 
 	//create and setup div to hold the actual number for the counter
-	var div2 = document.createElement("div");
-	div2.id = "steps";
-	div2.innerText = "0";
+	var stepDiv = document.createElement("div");
+	stepDiv.id = "steps";
+	stepDiv.innerText = "0";
 
-	//add label and div2 to container element and container param
+	//add label and stepDiv to container element and container param
 	div.appendChild(label);
-	div.appendChild(div2);
+	div.appendChild(stepDiv);
 	container.appendChild(div);
 };

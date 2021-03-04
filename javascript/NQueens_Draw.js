@@ -24,12 +24,10 @@ function draw_canvas(board, tiles, curr_queens) {
 			//fills square with green dark space if passes
 			//white square if fails
 			if ((i+j)%2 === 0) {
-				console.log(x,y,x+spacing,y+spacing,"green");
 				ctx.fillStyle = "green";
 				ctx.fillRect(x, y, spacing, spacing);
 			}
 			else {
-				console.log(x,y,x+spacing,y+spacing,"white");
 				ctx.fillStyle = "white";
 				ctx.fillRect(x, y, spacing, spacing);
 			}

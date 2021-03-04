@@ -5,21 +5,21 @@ Design
 	*Completed* 3. Button for solving
 	*Completed* 4. Step counter object
 2. Javascript
-	*Completed* 1. Draw grid (NxN)
-	*Completed* 2. Create object to store queen position array (Q-arr)
-	*Completed* 3. Map Q-arr to grid
-	*Completed* 4. Need to figure out how to map the slider value to the algoritm.
-	*Completed* 5. Map slider value to grid creation (only creates some values right... specifically 6 and 7 give issues).
-	6. Add step count incrementing (test node, expand node, remove node).
-	7. Add timers to delay solving to show step by step. Add different colors to show different steps.
-	8. Add key/legend for colors.
-	9. Add icon popup to explain web page.
-	10. Need a "no solution" popup within the solve button if no solution found
-	9. Implement solving methods
-		1. Types
-			1. Random
-			2. DFS
-			3. DFS with state checking
-			4. Research other approaches
+	*Completed* Draw grid (NxN)
+	*Completed* Create object to store queen position array (Q-arr)
+	*Completed* Map Q-arr to grid
+	*Completed* Need to figure out how to map the slider value to the algoritm.
+	*Completed* Map slider value to grid creation (only creates some values right... specifically 6 and 7 give issues).
+	*Completed* Add step count incrementing (test node, expand node, remove node).
+	Add timers to delay solving to show step by step. Add different colors to show different steps.
+	Add key/legend for colors.
+	Add icon popup to explain web page.
+	Need a "no solution" popup within the solve button if no solution found
+	Implement solving methods
+		Types
+			Random
+			DFS
+			DFS with state checking
+			Research other approaches
 3. CSS
 	1. Beautify web page

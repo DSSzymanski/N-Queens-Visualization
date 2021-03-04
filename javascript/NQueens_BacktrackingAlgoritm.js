@@ -18,6 +18,7 @@ function solve(board, size, arr) {
 	}
 	//for loop to iterate through the possible rows on the board
 	for (var row = 0; row < size; row += 1) {
+		incr_stepCounter();
 		//check if position is possible, if so add to array and recursively call function.
 		if (check_constraints(arr, row) === true) {
 			arr.push(row);
