@@ -108,10 +108,9 @@ function init_solveBtn(container) {
 
 	//onclick will start solving for the algorithm
 	solveBtn.onclick = function() {
-		var canvas = document.getElementById("chess_board");
-		var slider = document.getElementById("size_slider");
-		console.log(slider.value);
-		solve(canvas, 8, []);
+		const canvas = document.getElementById("chess_board");
+		const value = Number(document.getElementById("size_slider").value); 
+		solve(canvas, value, []);
 	}
 
 	//add to container element and to the container param

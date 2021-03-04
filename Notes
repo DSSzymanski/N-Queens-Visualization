@@ -8,7 +8,7 @@ Design
 	*Completed* 1. Draw grid (NxN)
 	*Completed* 2. Create object to store queen position array (Q-arr)
 	*Completed* 3. Map Q-arr to grid
-	4. Need to figure out how to map the slider value to the algoritm.
+	*Completed* 4. Need to figure out how to map the slider value to the algoritm.
 	5. Map slider value to grid creation (only creates some values right... specifically 6 and 7 give issues).
 	6. Add step count incrementing (test node, expand node, remove node).
 	7. Add timers to delay solving to show step by step. Add different colors to show different steps.
