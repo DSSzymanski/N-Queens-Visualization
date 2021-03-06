@@ -16,14 +16,14 @@ function draw_canvas(board, tiles, curr_queens) {
 	//spacing the queens on the squares
 	var spacing = board.width/tiles;
 
-	var j = 0;
+	var row = 0;
 	//draw board by alternating spaces in which to draw
 	for (var x = 0; x < board.width; x += spacing){
-		var i = 0;
+		var column = 0;
 		for (var y = 0; y < board.height; y += spacing) {
 			//fills square with green dark space if passes
 			//white square if fails
-			if ((i+j)%2 === 0) {
+			if ((row+column)%2 === 0) {
 				ctx.fillStyle = "green";
 				ctx.fillRect(x, y, spacing, spacing);
 			}
@@ -31,9 +31,9 @@ function draw_canvas(board, tiles, curr_queens) {
 				ctx.fillStyle = "white";
 				ctx.fillRect(x, y, spacing, spacing);
 			}
-			i += 1;
+			column += 1;
 		}
-		j += 1;
+		row += 1;
 	}
 	draw_border(board);
 	//Draw Queens on board
