@@ -11,30 +11,49 @@
 *@returns bool: Returns boolean value for if the board size has a solution or not.
 *	True represents the board size being solved, false represents no soluion.
 */
-function solve(board, size, arr) {
+function solve(board, size, arr, instructions) {
 	//Check if board puzzle is solved
 	if (arr.length === size) {
 		return true;
 	}
 	//for loop to iterate through the possible rows on the board
 	for (var row = 0; row < size; row += 1) {
-		incr_stepCounter();
+		const pos = [arr.length, row];
+		instructions.push(() => draw_queen(board, size, pos, TESTING));
 		//check if position is possible, if so add to array and recursively call function.
 		if (check_constraints(arr, row) === true) {
 			arr.push(row);
-			draw_canvas(board, size, arr);
+			instructions.push(() => draw_queen(board, size, pos, EXPANDING));
 			//recursive call will return true if expansion on arr works, false otherwise.
-			if (solve(board, size, arr) === true) {
+			if (solve(board, size, arr, instructions) === true) {
 				return true;
 			}
 			//remove node from arr and redraw canvas to reflect removing.
 			arr.pop();
-			draw_canvas(board, size, arr);
+			instructions.push(() => draw_queen(board, size, pos, DELETING));
 		}
+		var state = [...arr];
+		instructions.push(() => draw_canvas(board, size, state));
 	}
 	//returns false if no row works to find a solution
 	return false;
+};
+
+function sole(board, size, arr) {
+	var instructionQueue = [];
+	solve(board, size, arr, instructionQueue);
+	var test = setInterval(executeInstructions, 2000);
+	function executeInstructions() {
+		console.log("length", instructionQueue.length);
+		fx = instructionQueue.shift();
+		fx();
+		if (instructionQueue.length === 0) {
+			console.log("finish");
+			clearInterval(test);
+		}
+	}
 }
+
 
 /*
 *check_constraints() is a general function that calls functions to check every constraint.
@@ -55,7 +74,7 @@ function check_constraints(arr, row) {
 		return false;
 	}
 	return true;
-}
+};
 
 /*
 *check_upper_diag() checks if the queen attacks any queen in the upper left diagonal position.
@@ -73,7 +92,7 @@ function check_upper_diag(arr, row) {
 		row -= 1; 
 	}
 	return true;
-}
+};
 
 /*
 *check_lower_diag() checks if the queen attacks any queen in the lower left diagonal position.
@@ -91,7 +110,7 @@ function check_lower_diag(arr, row) {
 		row += 1; 
 	}
 	return true;
-}
+};
 
 /*
 *check_row() checks if the queen attacks any queen in the same row. Simple array check.
@@ -102,4 +121,4 @@ function check_lower_diag(arr, row) {
 */
 function check_row(arr, row) {
 	return !arr.includes(row);
-}
+};

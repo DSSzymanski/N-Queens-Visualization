@@ -1,3 +1,7 @@
+var TESTING = "blue";
+var EXPANDING = "black";
+var DELETING = "red";
+
 /*
 *draw_canvas() is the function used to draw the entire canvas object. Called when backtracking/
 *removing queens from the board, initial page load, and when drawing the board upon slider movement.
@@ -50,11 +54,11 @@ function draw_border(board) {
 	ctx.strokeRect(0, 0, board.width, board.height);
 }
 
-function draw_queen(board, size, pos) {
+function draw_queen(board, size, pos, mode) {
 	//get context and set up for drawing queens
 	var ctx = board.getContext("2d");
 	ctx.font = "36px Arial";
-	ctx.fillStyle = "red";
+	ctx.fillStyle = mode;
 
 	//used to offset and place queens
 	var spacing = board.width/size;

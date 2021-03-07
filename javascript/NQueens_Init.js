@@ -112,7 +112,7 @@ function init_solveBtn(container) {
 		const canvas = document.getElementById("chess_board");
 		const value = Number(document.getElementById("size_slider").value);
 		reset_stepCounter();
-		solve(canvas, value, []);
+		sole(canvas, value, []);
 	}
 
 	//add to container element and to the container param
