@@ -2,12 +2,16 @@ div {
 	text-align: center;
 }
 
-#taskbar, #stepCounter_container {
+.legend_text, #taskbar > div, #legend_label {
+	margin-right: 10px;
+	margin-left: 2px;
+}
+
+#taskbar, #stepCounter_container, #canvas_div, #legend_container {
 	display: flex;
 	justify-content: center;
 }
 
-#canvas_div {
-	display: flex;
-	justify-content: center;
+#legend_container {
+	margin-top: 5px;
 }

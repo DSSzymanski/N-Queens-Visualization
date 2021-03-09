@@ -11,7 +11,7 @@ Design
 	*Completed* Need to figure out how to map the slider value to the algoritm.
 	*Completed* Map slider value to grid creation (only creates some values right... specifically 6 and 7 give issues).
 	*Completed* Add step count incrementing (test node, expand node, remove node).
-	Add timers to delay solving to show step by step. Add different colors to show different steps.
+	*Completed* Add timers to delay solving to show step by step. Add different colors to show different steps.
 	Add key/legend for colors.
 	Add icon popup to explain web page.
 	Need a "no solution" popup within the solve button if no solution found

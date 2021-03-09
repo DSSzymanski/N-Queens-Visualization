@@ -14,8 +14,8 @@ function init() {
 	init_taskbar(mainDiv);
 	//add canvas
 	init_canvas(mainDiv);
-	//add step counter
-	init_stepCounter(mainDiv);
+
+	init_legend(mainDiv);
 };
 
 /**
@@ -37,7 +37,7 @@ function init_title(container) {
 
 /**
 *init_taskbar() is used upon document load to add the taskbar
-*Taskbar contains both the board size slider and the solve button.
+*	Taskbar contains both the board size slider and the solve button.
 *@param {node} container: The container to hold the title element
 *@return nothing
 */
@@ -49,14 +49,15 @@ function init_taskbar(container) {
 	init_slider(div);
 	//add solve button to taskbar
 	init_solveBtn(div);
+	init_stepCounter(div);
 	//add taskbar to container param
 	container.appendChild(div);
 };	
 
 /**
 *init_slider() is used upon document load to add the slider
-*to the taskbar. Contains both slider and text div to display
-*value of the slider.
+*	to the taskbar. Contains both slider and text div to display
+*	value of the slider.
 *@param {node} container: The container to hold the title element
 *@return nothing
 */
@@ -92,8 +93,8 @@ function init_slider(container) {
 
 /**
 *init_solveBtn() is used upon document load to add the solve button
-*to the taskbar. Solve button will start solving for the current
-*grid size once clicked.
+*	to the taskbar. Solve button will start solving for the current
+*	grid size once clicked.
 *@param {node} container: The container to hold the title element
 *@return nothing
 */
@@ -122,7 +123,7 @@ function init_solveBtn(container) {
 
 /**
 *init_canvas() is used upon document load to add the canvas
-*to the page. Will draw blank board upon creation.
+*	to the page. Will draw blank board upon creation.
 *@param {node} container: The container to hold the title element
 *@return nothing
 */
@@ -148,8 +149,8 @@ function init_canvas(container) {
 
 /**
 *init_stepCounter() is used upon document load to add the step counter
-*to the bottom of the element to track how many steps it takes the
-*algoritm to solve
+*	to the bottom of the element to track how many steps it takes the
+*	algoritm to solve
 *@param {node} container: The container to hold the title element
 *@return nothing
 */
@@ -171,5 +172,46 @@ function init_stepCounter(container) {
 	//add label and stepDiv to container element and container param
 	div.appendChild(label);
 	div.appendChild(stepDiv);
+	container.appendChild(div);
+};
+
+function init_legend(container) {
+	var div = document.createElement("div");
+	div.id = "legend_container";
+
+	const legend_label = document.createElement("label");
+	legend_label.innerText = "Legend:"
+	legend_label.id = "legend_label";
+
+	const square_style = "border: 1px solid black; width: 20px; height: 20px;";
+	
+	var testing_div = document.createElement("div");
+	testing_div.setAttribute("style", square_style + "background-color: " + TESTING + ";")
+
+	const testing_text = document.createElement("div");
+	testing_text.innerText = "Testing";
+	testing_text.className = "legend_text";
+
+	var expanding_div = document.createElement("div");
+	expanding_div.setAttribute("style", square_style + "background-color: " + EXPANDING + ";")
+
+	const expanding_text = document.createElement("div");
+	expanding_text.innerText = "Expanding";
+	expanding_text.className = "legend_text";
+
+	var deleting_div = document.createElement("div");
+	deleting_div.setAttribute("style", square_style + "background-color: " + DELETING + ";");
+
+	const deleting_text = document.createElement("div");
+	deleting_text.innerText = "Deleting";
+	deleting_text.className = "legend_text";
+
+	div.appendChild(legend_label);
+	div.appendChild(testing_div);
+	div.appendChild(testing_text);
+	div.appendChild(expanding_div);
+	div.appendChild(expanding_text);
+	div.appendChild(deleting_div);
+	div.appendChild(deleting_text);
 	container.appendChild(div);
 };
