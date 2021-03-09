@@ -1,6 +1,7 @@
-var TESTING = "blue";
-var EXPANDING = "black";
-var DELETING = "red";
+const TESTING = "blue";
+const EXPANDING = "black";
+const DELETING = "red";
+const INCREMENT_TRIGGER = 0;
 
 /*
 *draw_canvas() is the function used to draw the entire canvas object. Called when backtracking/
@@ -68,6 +69,7 @@ function draw_queen(board, size, pos, mode) {
 	//y_pos = y row + offset
 	var y_pos = (pos[1] * spacing) + 2*(spacing/3);
 	ctx.fillText("Q", x_pos, y_pos);
+	return INCREMENT_TRIGGER;
 }
 
 /*
