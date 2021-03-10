@@ -99,3 +99,13 @@ function draw_queens(board, size, curr_queens) {
 		ctx.fillText("Q", x_pos, y_pos);
 	});
 };
+
+function draw_noSoln(board, size) {
+	var ctx = board.getContext("2d");
+	ctx.font = "36px Arial";
+	ctx.fillStyle = "black";
+
+	const prompt = "No solution found!";
+	console.log(prompt);
+	ctx.fillText(prompt, 200, 200);
+}

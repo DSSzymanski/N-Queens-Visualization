@@ -10,27 +10,38 @@
 *@param {array} arr: array of ints representing currently placed queens of position
 *	[row, col] = [index of array, data at index]
 */
-function solve(board, size, arr) {
-	//interval rate
-	const interval = 500;
+async function solve(board, size, arr) {
 	//create and generate an array of instructions to execute
 	var instructionQueue = [];
 	const end_state = generateInstructions(board, size, arr, instructionQueue);
 
-	//execure instructions at set interval
-	var test = setInterval(executeInstructions, interval);
-	function executeInstructions() {
-		instruction = instructionQueue.shift();
-		//execute instruction. if instruction is a board reset don't increment step counter
-		const instructionType = instruction();
-		if (instructionType === INCREMENT_TRIGGER) {
-			incr_stepCounter();
+	await draw_instructions(board, size, arr, instructionQueue);
+	
+	return end_state;
+}
+
+function draw_instructions(board, size, arr, instructionQueue) {
+	promise = new Promise(function (resolve) {
+		//interval rate
+		const interval = 500;
+		var test = setInterval(executeInstructions, interval);
+		
+		//execure instructions at set interval
+		async function executeInstructions() {
+			const instruction = instructionQueue.shift();
+			//execute instruction. if instruction is a board reset don't increment step counter
+			const instructionType = instruction();
+			if (instructionType === INCREMENT_TRIGGER) {
+				incr_stepCounter();
+			}
+			//if end of instructionQueue end intervals
+			if (instructionQueue.length === 0) {
+				clearInterval(test);
+				resolve();
+			}
 		}
-		//if end of instructionQueue end intervals
-		if (instructionQueue.length === 0) {
-			clearInterval(test);
-		}
-	}
+	});
+	return promise;
 }
 
 /*

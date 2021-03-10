@@ -109,11 +109,15 @@ function init_solveBtn(container) {
 	solveBtn.innerText = "Solve";
 
 	//onclick will start solving for the algorithm
-	solveBtn.onclick = function() {
+	solveBtn.onclick = async function() {
 		const canvas = document.getElementById("chess_board");
 		const value = Number(document.getElementById("size_slider").value);
 		reset_stepCounter();
-		solve(canvas, value, []);
+		const end_state = await solve(canvas, value, []);
+		if (end_state === false) {
+			console.log("end");
+			draw_noSoln(canvas, value);
+		}
 	}
 
 	//add to container element and to the container param
