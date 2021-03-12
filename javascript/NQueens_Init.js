@@ -113,6 +113,8 @@ function init_solveBtn(container) {
 		const canvas = document.getElementById("chess_board");
 		const value = Number(document.getElementById("size_slider").value);
 		reset_stepCounter();
+		//endstate waits for the algorithm inside solve as well as the drawing to end.
+		//will draw over canvas if no solution is found.
 		const end_state = await solve(canvas, value, []);
 		if (end_state === false) {
 			console.log("end");
@@ -179,6 +181,16 @@ function init_stepCounter(container) {
 	container.appendChild(div);
 };
 
+/**
+*init_legendr() is used upon document load to add the queen color legend
+*	to the bottom of the element to show different types of queen placement.
+*	Currently 3 types:
+*		Test - test for placement
+*		Expand - expand and search with node
+*		Delete - remove node
+*@param {node} container: The container to hold the title element
+*@return nothing
+*/
 function init_legend(container) {
 	var div = document.createElement("div");
 	div.id = "legend_container";
@@ -187,29 +199,40 @@ function init_legend(container) {
 	legend_label.innerText = "Legend:"
 	legend_label.id = "legend_label";
 
+	//border for color squares representing queen types
 	const square_style = "border: 1px solid black; width: 20px; height: 20px;";
 	
+	//TESTING QUEENS
+	//color square
 	var testing_div = document.createElement("div");
 	testing_div.setAttribute("style", square_style + "background-color: " + TESTING + ";")
-
+	//text
 	const testing_text = document.createElement("div");
 	testing_text.innerText = "Testing";
 	testing_text.className = "legend_text";
-
+	//END TESTING QUEENS
+	
+	//EXPANDING QUEENS
+	//color square
 	var expanding_div = document.createElement("div");
 	expanding_div.setAttribute("style", square_style + "background-color: " + EXPANDING + ";")
-
+	//text
 	const expanding_text = document.createElement("div");
 	expanding_text.innerText = "Expanding";
 	expanding_text.className = "legend_text";
-
+	//END EXPANDING QUEENS
+	
+	//DELETING QUEENS
+	//color square
 	var deleting_div = document.createElement("div");
 	deleting_div.setAttribute("style", square_style + "background-color: " + DELETING + ";");
-
+	//text
 	const deleting_text = document.createElement("div");
 	deleting_text.innerText = "Deleting";
 	deleting_text.className = "legend_text";
-
+	//END DELETING QUEENS
+	
+	//add to web page
 	div.appendChild(legend_label);
 	div.appendChild(testing_div);
 	div.appendChild(testing_text);
