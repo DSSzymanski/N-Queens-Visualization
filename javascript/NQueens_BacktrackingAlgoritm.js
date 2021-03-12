@@ -1,7 +1,7 @@
 /*
 *solve() is the main function to call within the module. This will go through the backtracking
 *	algorithm and generate a set of instructions. Then the function will execute these functions,
-*	drawing them on the webpage's canvas.
+*	drawing them on the webpage's canvas. Async to wait for drawing function to end before returning.
 *@param {canvas node} board: canvas node relating to the chess board. used as a param
 *	for the drawing functions
 *@param {int} size: size of the board. Used as a param within the drawing functions as
@@ -13,13 +13,31 @@
 async function solve(board, size, arr) {
 	//create and generate an array of instructions to execute
 	var instructionQueue = [];
+	//generate list of drawing instructions
 	const end_state = generateInstructions(board, size, arr, instructionQueue);
-
+	
+	//execute and wait for drawing instructions to end
 	await draw_instructions(board, size, arr, instructionQueue);
 	
 	return end_state;
 }
 
+/*
+*draw_instructions() is the function to draw all the moves on the canvas board. 
+*	promise allows main function to wait until the function ends before advancing on.
+*@param {canvas node} board: canvas node relating to the chess board. used as a param
+*	for the drawing functions
+*@param {int} size: size of the board. Used as a param within the drawing functions as
+*	well as checking if the board is completely solved and as a bound for the for loops
+*	that check all rows for possible queen tiles.
+*@param {array} arr: array of ints representing currently placed queens of position
+*	[row, col] = [index of array, data at index]
+*@param {array} instructionQueue: array functions representing drawing instructions for canvas board.
+*	possible functions: 
+*		draw_canvas() - resets board and draws current queens
+*		draw_queen() - draws one queen on the board, color coded for type (see NQueens_draw.js)
+*/
+//TODO: remove arr?
 function draw_instructions(board, size, arr, instructionQueue) {
 	promise = new Promise(function (resolve) {
 		//interval rate
