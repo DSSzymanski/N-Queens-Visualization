@@ -49,6 +49,7 @@ function draw_instructions(board, size, arr, instructionQueue) {
 			const instruction = instructionQueue.shift();
 			//execute instruction. if instruction is a board reset don't increment step counter
 			const instructionType = instruction();
+			//TODO: change to while and grab next step (so no blank drawing on canvas)
 			if (instructionType === INCREMENT_TRIGGER) {
 				incr_stepCounter();
 			}
