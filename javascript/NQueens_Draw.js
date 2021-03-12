@@ -1,6 +1,11 @@
+//variable for testing queen color
 const TESTING = "blue";
+//variable for expanding queen color
 const EXPANDING = "black";
+//variable for deleting queen color
 const DELETING = "red";
+//variable to represent returning to solving algorithm that the board is redrawn and
+//not to increment step counter
 const INCREMENT_TRIGGER = 0;
 
 /*
@@ -48,13 +53,26 @@ function draw_canvas(board, tiles, curr_queens) {
 	}
 };
 
+/*
+*draw_border() is the function that draws a border around the edge of the canvas.
+*@param {canvas node} board: canvas to draw border on.
+*/
 function draw_border(board) {
 	var ctx = board.getContext("2d");
-
+	//border style
 	ctx.strokeStyle = "black";
 	ctx.strokeRect(0, 0, board.width, board.height);
 }
 
+/*
+*draw_queen() is the main function for drawing queen steps on the board. Takes in 3 modes,
+*	which are represented as colors for testing, expanding, and deleting from the board.
+*@param {canvas node} board: main canvas node for drawing board and pieces.
+*@param {int} size: dimensions of board in tiles (board is tilesXtiles size).
+*@param {array} pos: array representing singular position of queen on the board
+*	[row, col] = [index of array, data at index].
+*@param {string} mode: color string representing mode of queen being placed as explained above.
+*/
 function draw_queen(board, size, pos, mode) {
 	//get context and set up for drawing queens
 	var ctx = board.getContext("2d");
@@ -100,6 +118,12 @@ function draw_queens(board, size, curr_queens) {
 	});
 };
 
+/*
+*draw_noSoln() draws a message over the canvas in the event that there is no valid solution for
+*	a board of the given size.
+*@param {canvas node} board: main canvas node for drawing board and pieces.
+*@param {int} size: dimensions of board in tiles (board is tilesXtiles size).
+*/
 function draw_noSoln(board, size) {
 	var ctx = board.getContext("2d");
 	ctx.font = "36px Arial";
