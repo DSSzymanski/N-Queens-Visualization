@@ -17,7 +17,7 @@ async function solve(board, size, arr) {
 	const end_state = generateInstructions(board, size, arr, instructionQueue);
 	
 	//execute and wait for drawing instructions to end
-	await draw_instructions(board, size, arr, instructionQueue);
+	await draw_instructions(board, size, instructionQueue);
 	
 	return end_state;
 }
@@ -30,15 +30,12 @@ async function solve(board, size, arr) {
 *@param {int} size: size of the board. Used as a param within the drawing functions as
 *	well as checking if the board is completely solved and as a bound for the for loops
 *	that check all rows for possible queen tiles.
-*@param {array} arr: array of ints representing currently placed queens of position
-*	[row, col] = [index of array, data at index]
 *@param {array} instructionQueue: array functions representing drawing instructions for canvas board.
 *	possible functions: 
 *		draw_canvas() - resets board and draws current queens
 *		draw_queen() - draws one queen on the board, color coded for type (see NQueens_draw.js)
 */
-//TODO: remove arr?
-function draw_instructions(board, size, arr, instructionQueue) {
+function draw_instructions(board, size, instructionQueue) {
 	promise = new Promise(function (resolve) {
 		//interval rate
 		const interval = 2;
