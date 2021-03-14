@@ -74,7 +74,8 @@ function init_slider(container) {
 	slider.type = "range";
 	slider.min = "1";
 	slider.max = "20";
-	slider.value = "8";
+	//default value
+	slider.value = "2";
 	slider.id = "size_slider";
 
 	//functionality to display the sliders value in the text element
@@ -112,6 +113,7 @@ function init_solveBtn(container) {
 	solveBtn.onclick = async function() {
 		const canvas = document.getElementById("chess_board");
 		const value = Number(document.getElementById("size_slider").value);
+		draw_canvas(canvas, value, []);
 		reset_stepCounter();
 		//endstate waits for the algorithm inside solve as well as the drawing to end.
 		//will draw over canvas if no solution is found.

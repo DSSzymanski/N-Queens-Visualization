@@ -13,8 +13,9 @@ Design
 	*Completed* Add step count incrementing (test node, expand node, remove node).
 	*Completed* Add timers to delay solving to show step by step. Add different colors to show different steps.
 	*Completed* Add key/legend for colors.
-	Add icon popup to explain web page.
-	Need a "no solution" popup within the solve button if no solution found
+	*Completed* Need a "no solution" popup within the solve button if no solution found
+	Stop functionality for resize
+	Complete writeup at bottom of page
 	Implement solving methods
 		Types
 			Random

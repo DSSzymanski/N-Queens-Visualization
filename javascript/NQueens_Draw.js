@@ -125,11 +125,26 @@ function draw_queens(board, size, curr_queens) {
 *@param {int} size: dimensions of board in tiles (board is tilesXtiles size).
 */
 function draw_noSoln(board, size) {
+	//y position on canvas
+	let y_pos = 200;
+	//padding around text
+	let pad = 10;
+	let prompt = "No solution found!";
+	//text positioning
+	let text_pos = board.width/2;
 	var ctx = board.getContext("2d");
+	//measurement for drawing box around text
+	let text_width = ctx.measureText(prompt).width;
+
+	//draw box to display text in
+	ctx.fillStyle = "grey";
+	ctx.strokeStyle = "black";
+	ctx.fillRect(text_pos-((text_width/2)+pad), y_pos-34, text_width+(pad*2), 40);
+	ctx.strokeRect(text_pos-((text_width/2)+pad), y_pos-34, text_width+(pad*2), 40);
+	
+	//draw text
 	ctx.font = "36px Arial";
 	ctx.fillStyle = "black";
-
-	const prompt = "No solution found!";
-	console.log(prompt);
-	ctx.fillText(prompt, 200, 200);
+	ctx.textAlign = "center";
+	ctx.fillText(prompt, text_pos, y_pos);
 }

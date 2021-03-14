@@ -41,7 +41,7 @@ async function solve(board, size, arr) {
 function draw_instructions(board, size, arr, instructionQueue) {
 	promise = new Promise(function (resolve) {
 		//interval rate
-		const interval = 500;
+		const interval = 2;
 		var test = setInterval(executeInstructions, interval);
 		
 		//execure instructions at set interval
