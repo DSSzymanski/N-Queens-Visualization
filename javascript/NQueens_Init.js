@@ -82,6 +82,10 @@ function init_slider(container) {
 	//updates grid when slid
 	text.innerText = slider.value;
 	slider.oninput = function() {
+		//reset canvas and stop algorithm if already running
+		clearInterval(draw_instructions_var);
+		reset_stepCounter();
+		
 		text.innerText = this.value;
 		draw_canvas(document.getElementById("chess_board"), this.value, [])
 	}
@@ -113,13 +117,14 @@ function init_solveBtn(container) {
 	solveBtn.onclick = async function() {
 		const canvas = document.getElementById("chess_board");
 		const value = Number(document.getElementById("size_slider").value);
+		//reset canvas and algorithm if already running
 		draw_canvas(canvas, value, []);
+		clearInterval(draw_instructions_var);
 		reset_stepCounter();
 		//endstate waits for the algorithm inside solve as well as the drawing to end.
 		//will draw over canvas if no solution is found.
 		const end_state = await solve(canvas, value, []);
 		if (end_state === false) {
-			console.log("end");
 			draw_noSoln(canvas, value);
 		}
 	}

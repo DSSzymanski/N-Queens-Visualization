@@ -1,3 +1,4 @@
+var draw_instructions_var;
 /*
 *solve() is the main function to call within the module. This will go through the backtracking
 *	algorithm and generate a set of instructions. Then the function will execute these functions,
@@ -38,8 +39,8 @@ async function solve(board, size, arr) {
 function draw_instructions(board, size, instructionQueue) {
 	promise = new Promise(function (resolve) {
 		//interval rate
-		const interval = 2;
-		var test = setInterval(executeInstructions, interval);
+		const interval = 2000;
+		draw_instructions_var = setInterval(executeInstructions, interval);
 		
 		//execure instructions at set interval
 		async function executeInstructions() {
@@ -52,7 +53,7 @@ function draw_instructions(board, size, instructionQueue) {
 			}
 			//if end of instructionQueue end intervals
 			if (instructionQueue.length === 0) {
-				clearInterval(test);
+				clearInterval(draw_instructions_var);
 				resolve();
 			}
 		}
