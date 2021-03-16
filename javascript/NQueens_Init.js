@@ -46,7 +46,8 @@ function init_taskbar(container) {
 	var div = document.createElement("div");
 	div.id = "taskbar";
 	//add slider to taskbar
-	init_slider(div);
+	init_sizeSlider(div);
+	init_intervalSlider(div);
 	//add solve button to taskbar
 	init_solveBtn(div);
 	init_stepCounter(div);
@@ -54,17 +55,17 @@ function init_taskbar(container) {
 	container.appendChild(div);
 };	
 
-/**
-*init_slider() is used upon document load to add the slider
-*	to the taskbar. Contains both slider and text div to display
-*	value of the slider.
+/*
+*init_sizeSlider() is used upon document load to add the slider
+*	to the taskbar that controls the boards size. Contains both 
+*	slider and text div to display the value of the slider.
 *@param {node} container: The container to hold the title element
 *@return nothing
 */
-function init_slider(container) {
+function init_sizeSlider(container) {
 	//create and setup container to store slider elements
 	var div = document.createElement("div");
-	div.id = "slider_container";
+	div.id = "sizeSlider_container";
 	
 	//create slider's text element
 	var text = document.createElement("div");
@@ -74,20 +75,59 @@ function init_slider(container) {
 	slider.type = "range";
 	slider.min = "1";
 	slider.max = "20";
+	//default
+	slider.value = "8";
+	text.innerText = slider.value + "x" + slider.value;
+
+	slider.id = "size_slider";
+
+	//functionality to display the sliders value in the text element
+	//updates grid when slid
+	slider.oninput = function() {
+		//reset canvas and stop algorithm if already running
+		stop_algorithm();
+		reset_stepCounter();
+		
+		text.innerText = this.value + "x" + this.value;
+		draw_canvas(document.getElementById("chess_board"), this.value, [])
+	}
+	
+	//add to slider container and container param
+	div.appendChild(slider);
+	div.appendChild(text);
+	container.appendChild(div);
+};
+
+/*
+*init_intervalSlider() is used upon document load to add the slider
+*	to the taskbar that controls the algorithms interval time. Contains 
+*	both slider and text div to display the value of the slider.
+*@param {node} container: The container to hold the title element
+*@return nothing
+*/
+function init_intervalSlider(container) {
+	//create and setup container to store slider elements
+	var div = document.createElement("div");
+	div.id = "intervalSlider_container";
+	
+	//create slider's text element
+	var text = document.createElement("div");
+
+	//create and setup slider element
+	var slider = document.createElement("input");
+	slider.type = "range";
+	slider.min = "100";
+	slider.max = "2000";
+	slider.step = "100";
 	//default value
-	slider.value = "2";
+	slider.value = "1000";
 	slider.id = "size_slider";
 
 	//functionality to display the sliders value in the text element
 	//updates grid when slid
 	text.innerText = slider.value;
 	slider.oninput = function() {
-		//reset canvas and stop algorithm if already running
-		stop_algorithm();
-		reset_stepCounter();
-		
 		text.innerText = this.value;
-		draw_canvas(document.getElementById("chess_board"), this.value, [])
 	}
 	
 	//add to slider container and container param
