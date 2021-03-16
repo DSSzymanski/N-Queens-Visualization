@@ -39,7 +39,7 @@ async function solve(board, size, arr) {
 function draw_instructions(board, size, instructionQueue) {
 	promise = new Promise(function (resolve) {
 		//interval rate
-		const interval = 2000;
+		const interval = 20;
 		draw_instructions_var = setInterval(executeInstructions, interval);
 		
 		//execure instructions at set interval
@@ -53,13 +53,15 @@ function draw_instructions(board, size, instructionQueue) {
 			}
 			//if end of instructionQueue end intervals
 			if (instructionQueue.length === 0) {
-				clearInterval(draw_instructions_var);
+				stop_algorithm();
 				resolve();
 			}
 		}
 	});
 	return promise;
 }
+
+const stop_algorithm = () => {clearInterval(draw_instructions_var)}; 
 
 /*
 *generateInstructions() implements a recursive backtrackingalgorithm to generate a set

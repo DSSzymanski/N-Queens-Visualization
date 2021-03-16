@@ -83,7 +83,7 @@ function init_slider(container) {
 	text.innerText = slider.value;
 	slider.oninput = function() {
 		//reset canvas and stop algorithm if already running
-		clearInterval(draw_instructions_var);
+		stop_algorithm();
 		reset_stepCounter();
 		
 		text.innerText = this.value;
@@ -119,7 +119,7 @@ function init_solveBtn(container) {
 		const value = Number(document.getElementById("size_slider").value);
 		//reset canvas and algorithm if already running
 		draw_canvas(canvas, value, []);
-		clearInterval(draw_instructions_var);
+		stop_algorithm();
 		reset_stepCounter();
 		//endstate waits for the algorithm inside solve as well as the drawing to end.
 		//will draw over canvas if no solution is found.
