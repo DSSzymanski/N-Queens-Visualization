@@ -66,9 +66,13 @@ function init_sizeSlider(container) {
 	//create and setup container to store slider elements
 	var div = document.createElement("div");
 	div.id = "sizeSlider_container";
-	
+
+	//label text	
+	var label_text = document.createElement("div");
+	label_text.innerText = "Grid Size";
+
 	//create slider's text element
-	var text = document.createElement("div");
+	var currVal_text = document.createElement("div");
 
 	//create and setup slider element
 	var slider = document.createElement("input");
@@ -77,7 +81,7 @@ function init_sizeSlider(container) {
 	slider.max = "20";
 	//default
 	slider.value = "8";
-	text.innerText = slider.value + "x" + slider.value;
+	currVal_text.innerText = slider.value + "x" + slider.value;
 
 	slider.id = "size_slider";
 
@@ -88,13 +92,14 @@ function init_sizeSlider(container) {
 		stop_algorithm();
 		reset_stepCounter();
 		
-		text.innerText = this.value + "x" + this.value;
+		currVal_text.innerText = this.value + "x" + this.value;
 		draw_canvas(document.getElementById("chess_board"), this.value, [])
 	}
 	
 	//add to slider container and container param
+	div.appendChild(label_text);
 	div.appendChild(slider);
-	div.appendChild(text);
+	div.appendChild(currVal_text);
 	container.appendChild(div);
 };
 
