@@ -121,7 +121,7 @@ function init_intervalSlider(container) {
 	slider.step = "100";
 	//default value
 	slider.value = "1000";
-	slider.id = "size_slider";
+	slider.id = "interval_slider";
 
 	//functionality to display the sliders value in the text element
 	//updates grid when slid
@@ -156,16 +156,17 @@ function init_solveBtn(container) {
 	//onclick will start solving for the algorithm
 	solveBtn.onclick = async function() {
 		const canvas = document.getElementById("chess_board");
-		const value = Number(document.getElementById("size_slider").value);
+		const sizeValue = Number(document.getElementById("size_slider").value);
+		const intervalValue = Number(document.getElementById("interval_slider").value);
 		//reset canvas and algorithm if already running
-		draw_canvas(canvas, value, []);
+		draw_canvas(canvas, sizeValue, []);
 		stop_algorithm();
 		reset_stepCounter();
 		//endstate waits for the algorithm inside solve as well as the drawing to end.
 		//will draw over canvas if no solution is found.
-		const end_state = await solve(canvas, value, []);
+		const end_state = await solve(canvas, sizeValue, intervalValue, []);
 		if (end_state === false) {
-			draw_noSoln(canvas, value);
+			draw_noSoln(canvas, sizeValue);
 		}
 	}
 

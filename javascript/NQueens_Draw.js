@@ -76,7 +76,7 @@ function draw_border(board) {
 function draw_queen(board, size, pos, mode) {
 	//get context and set up for drawing queens
 	var ctx = board.getContext("2d");
-	ctx.font = "36px Arial";
+	ctx.font = "24px Arial";
 	ctx.fillStyle = mode;
 
 	//used to offset and place queens
@@ -102,7 +102,7 @@ function draw_queen(board, size, pos, mode) {
 function draw_queens(board, size, curr_queens) {
 	//get context and set up for drawing queens
 	var ctx = board.getContext("2d");
-	ctx.font = "36px Arial";
+	ctx.font = "24px Arial";
 	ctx.fillStyle = "black";
 
 	//used to offset and place queens
