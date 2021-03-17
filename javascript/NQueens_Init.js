@@ -125,9 +125,9 @@ function init_intervalSlider(container) {
 
 	//functionality to display the sliders value in the text element
 	//updates grid when slid
-	text.innerText = slider.value;
+	text.innerText = slider.value/1000 + " sec";
 	slider.oninput = function() {
-		text.innerText = this.value;
+		text.innerText = this.value/1000 + " sec";
 	}
 	
 	//add to slider container and container param
