@@ -5,6 +5,9 @@ div {
 .legend_text, #taskbar > div, #legend_label {
 	margin-right: 10px;
 	margin-left: 2px;
+	margin-top: auto;
+	margin-bottom: auto;
+	vertical-align: middle;
 }
 
 #taskbar, #stepCounter_container, #canvas_div, #legend_container {
