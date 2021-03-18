@@ -15,6 +15,7 @@ Design
 	*Completed* Add key/legend for colors.
 	*Completed* Need a "no solution" popup within the solve button if no solution found
 	*Completed* Stop functionality for resize
+	*Completed* Add interval slider
 	Complete writeup at bottom of page
 	Implement solving methods
 		Types

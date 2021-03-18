@@ -7,11 +7,57 @@
 		<script src="../javascript/NQueens_Draw.js" type="text/javascript"></script>
 		<script src="../javascript/NQueens_Init.js" type="text/javascript"></script>
 		<script src="../javascript/NQueens_Misc.js" type="text/javascript"></script>
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 	</head>
-	<body onload="init()" bgColor="#89E698">
+	<body onload="init()">
 		<div id="main"></div>
 		<div id="write-up">
-			<h3>N-Queens Explained</h3>
+			<div class="row">
+				<div class="col-lg-2 col-md-1"></div>
+				<div class="col-lg-8 col-md-10">
+					<h3><u><b>N-Queens Explained</b></u></h3>
+					<h6>Summary</h6>
+					<p>
+						N-Queens is a chess based puzzle where the goal is traditionally to place 8 Queens on a 8x8 sized chess 
+						board without attacking each other. This can be expanded to fit any solution of requiring a number (N) 
+						of Queen pieces to be placed on a NxN sized board. The Queen piece can attack in any of the cardinal 
+						directions as well as diagonally, so no queen can be placed on the same row, column, or diagonal.
+					</p>
+					<h6>Using the Display</h6>
+					<p>
+						At the top of the chess board there are 3 main input controls; the size slider, the interval slider, 
+						and the solve button. The size slider will change the size of the board to desired NxN size. Currently 
+						the slider ranges from size 1x1 to size 20x20. The interval changes how long the algorithm takes to display 
+						the next step between .1 seconds and 2 seconds. The solve button will start the algorithm to solve the 
+						N-Queens puzzle.
+					</p>
+					<p>
+						Once the solve button is clicked and the algorithm is started, the chess board will change and Queen pieces 
+						will start to appear on the board. Blue colored Queens on a tile represent that the Queen is currently being 
+						tested to make sure that if the Queen is placed there that it won't be being attacked by any other Queen 
+						already on the board. Black colored Queens represent expanded Queens where they have already passed testing 
+						and are being expanded to see if a solution can be found with that Queen in that position given the rest of 
+						the board. A Red queen represents a Queen being deleted due to no solutions existing for that Queen in that 
+						position given the rest of the board.
+					</p>
+					<p>
+						If the board size has a valid solution, it will display when the algorithm is finished running. If there is 
+						no valid solution for the board size, the board will display as such.
+					</p>
+					<h6>Algorithm</h6>
+					<p>
+						Currently the algorithm used to solve this puzzle is a recursive backtracking algorithm. This algorithm searches 
+						the board, starting at the left most column and working it's way to the right. The algorithm will start from the 
+						top and test each node going down to see if it is a valid node 1 at a time. If the node is valid, it will try 
+						expanding the node, placing a queen on the board and moving to the next column.
+					</p>
+				</div>
+				<div class="col-lg-2 col-md-1"></div>
+			</div>
 		</div>
 	</body>
 </html>
