@@ -5,18 +5,31 @@
 function init() {
 	//select main div within body
 	var mainDiv = document.querySelector("#main");
-	//add title bar
+	
 	init_title(mainDiv);
+	init_taskbar_and_canvas(mainDiv);
+};
+
+/**
+*init_taskbar_and_canvas() is used upon document load to taskbar and canvas
+*	elements inside a content container
+*@param {node} container: The container to hold the title element
+*@return nothing
+*/
+const init_taskbar_and_canvas = (container) => {
+	var content_div = document.createElement("div");
+	content_div.id = "content_container";
+	container.appendChild(content_div);
 	/*
 	*add task bar. contains both the slider for the 
 	*board size and the solve button
 	*/
-	init_taskbar(mainDiv);
-	//add canvas
-	init_canvas(mainDiv);
+	init_taskbar(content_div);
 
-	init_legend(mainDiv);
-};
+	//add canvas
+	init_canvas(content_div);	
+}
+
 
 /**
 *init_title() is used upon document load to add the h1 header title
@@ -45,6 +58,11 @@ function init_taskbar(container) {
 	//create and setup container to store taskbar elements
 	var div = document.createElement("div");
 	div.id = "taskbar";
+
+	var text = document.createElement("h5");
+	text.innerText = "Input Controls";
+	div.appendChild(text);
+
 	//add slider to taskbar
 	init_sizeSlider(div);
 	init_intervalSlider(div);
@@ -206,6 +224,7 @@ function init_canvas(container) {
 	div.appendChild(canvas);
 	container.appendChild(div);
 
+	init_legend(div);
 	//get default value from slider and draw blank board to start
 	const default_size = document.getElementById("size_slider").value;
 	draw_canvas(canvas, default_size, []);
@@ -240,7 +259,7 @@ function init_stepCounter(container) {
 };
 
 /**
-*init_legendr() is used upon document load to add the queen color legend
+*init_legend() is used upon document load to add the queen color legend
 *	to the bottom of the element to show different types of queen placement.
 *	Currently 3 types:
 *		Test - test for placement
