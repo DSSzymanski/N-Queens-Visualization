@@ -68,6 +68,11 @@ const draw_instructions = (board, size, interval, instructionQueue) => {
 	return promise;
 }
 
+/*
+*stop_algorithm() is an interupt for the algorithm to stop in the event of the size slider
+*	being moved or the solve button being clicked again.
+*@returns nothing
+*/
 const stop_algorithm = () => {clearInterval(draw_instructions_var)}; 
 
 /*
