@@ -12,7 +12,7 @@ var draw_instructions_var;
 *@param {array} arr: array of ints representing currently placed queens of position
 *	[row, col] = [index of array, data at index]
 */
-async function solve(board, size, interval, arr) {
+const solve = async (board, size, interval, arr) => {
 	//create and generate an array of instructions to execute
 	var instructionQueue = [];
 	//generate list of drawing instructions
@@ -38,7 +38,7 @@ async function solve(board, size, interval, arr) {
 *		draw_canvas() - resets board and draws current queens
 *		draw_queen() - draws one queen on the board, color coded for type (see NQueens_draw.js)
 */
-function draw_instructions(board, size, interval, instructionQueue) {
+const draw_instructions = (board, size, interval, instructionQueue) => {
 	promise = new Promise(function (resolve) {
 		//interval rate
 		draw_instructions_var = setInterval(executeInstructions, interval);
@@ -84,7 +84,7 @@ const stop_algorithm = () => {clearInterval(draw_instructions_var)};
 *@returns bool: Returns boolean value for if the board size has a solution or not.
 *	True represents the board size being solved, false represents no soluion.
 */
-function generateInstructions(board, size, arr, instructions) {
+const generateInstructions = (board, size, arr, instructions) => {
 	//Check if board puzzle is generateInstructionsd
 	if (arr.length === size) {
 		return true;
@@ -125,7 +125,7 @@ function generateInstructions(board, size, arr, instructions) {
 *@returns {boolean}: returns boolean value of true if the location passed all constraints,
 *	false otherwise.
 */
-function check_constraints(arr, row) {
+const check_constraints = (arr, row) => {
 	if (check_row(arr, row) === false) {
 		return false;
 	}
@@ -145,7 +145,7 @@ function check_constraints(arr, row) {
 *@param {int} row: location of next location to check.
 *@returns {boolean}: returns boolean value of true if the location passed false otherwise.
 */
-function check_upper_diag(arr, row) {
+const check_upper_diag = (arr, row) => {
 	//decrement row to not check current position (can't attack itself).
 	row -= 1;
 	//loop to move to the left until you hit the left side of the board.
@@ -163,7 +163,7 @@ function check_upper_diag(arr, row) {
 *@param {int} row: location of next location to check.
 *@returns {boolean}: returns boolean value of true if the location passed false otherwise.
 */
-function check_lower_diag(arr, row) {
+const check_lower_diag = (arr, row) => {
 	//increment row to not check current position (can't attack itself).
 	row += 1;
 	//loop to move to the left until you hit the left side of the board.
@@ -181,6 +181,6 @@ function check_lower_diag(arr, row) {
 *@param {int} row: location of next location to check.
 *@returns {boolean}: returns boolean value of true if the location passed false otherwise.
 */
-function check_row(arr, row) {
+const check_row = (arr, row) => {
 	return !arr.includes(row);
 };

@@ -17,7 +17,7 @@ const INCREMENT_TRIGGER = 0;
 *	[row, col] = [index of array, data at index]. This will be an empty array before algorithm is
 * 	started.
 */
-function draw_canvas(board, tiles, curr_queens) {
+const draw_canvas = (board, tiles, curr_queens) => {
 	//get context
 	var ctx = board.getContext("2d");
 
@@ -57,8 +57,8 @@ function draw_canvas(board, tiles, curr_queens) {
 *draw_border() is the function that draws a border around the edge of the canvas.
 *@param {canvas node} board: canvas to draw border on.
 */
-function draw_border(board) {
-	var ctx = board.getContext("2d");
+const draw_border = (board) => {
+	let ctx = board.getContext("2d");
 	//border style
 	ctx.strokeStyle = "black";
 	ctx.strokeRect(0, 0, board.width, board.height);
@@ -73,7 +73,7 @@ function draw_border(board) {
 *	[row, col] = [index of array, data at index].
 *@param {string} mode: color string representing mode of queen being placed as explained above.
 */
-function draw_queen(board, size, pos, mode) {
+const draw_queen = (board, size, pos, mode) => {
 	//get context and set up for drawing queens
 	var ctx = board.getContext("2d");
 	ctx.font = "24px Arial";
@@ -99,7 +99,7 @@ function draw_queen(board, size, pos, mode) {
 *	[row, col] = [index of array, data at index]. This will be an empty array before algorithm is
 * 	started.
 */
-function draw_queens(board, size, curr_queens) {
+const draw_queens = (board, size, curr_queens) => {
 	//get context and set up for drawing queens
 	var ctx = board.getContext("2d");
 	ctx.font = "24px Arial";
@@ -124,7 +124,7 @@ function draw_queens(board, size, curr_queens) {
 *@param {canvas node} board: main canvas node for drawing board and pieces.
 *@param {int} size: dimensions of board in tiles (board is tilesXtiles size).
 */
-function draw_noSoln(board, size) {
+const draw_noSoln = (board, size) => {
 	//y position on canvas
 	let y_pos = 200;
 	//padding around text
