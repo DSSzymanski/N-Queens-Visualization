@@ -12,7 +12,7 @@ var draw_instructions_var;
 *@param {array} arr: array of ints representing currently placed queens of position
 *	[row, col] = [index of array, data at index]
 */
-const solve = async (board, size, interval, arr) => {
+async function solve(board, size, interval, arr) {
 	//create and generate an array of instructions to execute
 	var instructionQueue = [];
 	//generate list of drawing instructions
@@ -38,7 +38,7 @@ const solve = async (board, size, interval, arr) => {
 *		draw_canvas() - resets board and draws current queens
 *		draw_queen() - draws one queen on the board, color coded for type (see NQueens_draw.js)
 */
-const draw_instructions = (board, size, interval, instructionQueue) => {
+function draw_instructions(board, size, interval, instructionQueue) {
 	promise = new Promise(function (resolve) {
 		//interval rate
 		draw_instructions_var = setInterval(executeInstructions, interval);
@@ -54,6 +54,12 @@ const draw_instructions = (board, size, interval, instructionQueue) => {
 			}
 			else {
 				const instruction = instructionQueue.shift();
+				//if end of instructionQueue end intervals
+				if (instructionQueue.length === 0) {
+					stop_algorithm();
+					resolve();
+					return;
+				}
 				//execute instruction. if instruction is a board reset don't increment step counter
 				const instructionType = instruction();
 				incr_stepCounter();
@@ -62,17 +68,13 @@ const draw_instructions = (board, size, interval, instructionQueue) => {
 			if (instructionQueue.length === 0) {
 				stop_algorithm();
 				resolve();
+				return;
 			}
 		}
 	});
 	return promise;
 }
 
-/*
-*stop_algorithm() is an interupt for the algorithm to stop in the event of the size slider
-*	being moved or the solve button being clicked again.
-*@returns nothing
-*/
 const stop_algorithm = () => {clearInterval(draw_instructions_var)}; 
 
 /*
@@ -89,7 +91,7 @@ const stop_algorithm = () => {clearInterval(draw_instructions_var)};
 *@returns bool: Returns boolean value for if the board size has a solution or not.
 *	True represents the board size being solved, false represents no soluion.
 */
-const generateInstructions = (board, size, arr, instructions) => {
+function generateInstructions(board, size, arr, instructions) {
 	//Check if board puzzle is generateInstructionsd
 	if (arr.length === size) {
 		return true;
@@ -130,7 +132,7 @@ const generateInstructions = (board, size, arr, instructions) => {
 *@returns {boolean}: returns boolean value of true if the location passed all constraints,
 *	false otherwise.
 */
-const check_constraints = (arr, row) => {
+function check_constraints(arr, row) {
 	if (check_row(arr, row) === false) {
 		return false;
 	}
@@ -150,7 +152,7 @@ const check_constraints = (arr, row) => {
 *@param {int} row: location of next location to check.
 *@returns {boolean}: returns boolean value of true if the location passed false otherwise.
 */
-const check_upper_diag = (arr, row) => {
+function check_upper_diag(arr, row) {
 	//decrement row to not check current position (can't attack itself).
 	row -= 1;
 	//loop to move to the left until you hit the left side of the board.
@@ -168,7 +170,7 @@ const check_upper_diag = (arr, row) => {
 *@param {int} row: location of next location to check.
 *@returns {boolean}: returns boolean value of true if the location passed false otherwise.
 */
-const check_lower_diag = (arr, row) => {
+function check_lower_diag(arr, row) {
 	//increment row to not check current position (can't attack itself).
 	row += 1;
 	//loop to move to the left until you hit the left side of the board.
@@ -186,6 +188,6 @@ const check_lower_diag = (arr, row) => {
 *@param {int} row: location of next location to check.
 *@returns {boolean}: returns boolean value of true if the location passed false otherwise.
 */
-const check_row = (arr, row) => {
+function check_row(arr, row) {
 	return !arr.includes(row);
 };

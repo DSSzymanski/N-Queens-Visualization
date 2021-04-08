@@ -7,6 +7,8 @@ const DELETING = "red";
 //variable to represent returning to solving algorithm that the board is redrawn and
 //not to increment step counter
 const INCREMENT_TRIGGER = 0;
+//unicode queen var
+const uni_queen = "\u265B";
 
 /*
 *draw_canvas() is the function used to draw the entire canvas object. Called when backtracking/
@@ -17,7 +19,7 @@ const INCREMENT_TRIGGER = 0;
 *	[row, col] = [index of array, data at index]. This will be an empty array before algorithm is
 * 	started.
 */
-const draw_canvas = (board, tiles, curr_queens) => {
+function draw_canvas(board, tiles, curr_queens) {
 	//get context
 	var ctx = board.getContext("2d");
 
@@ -57,12 +59,12 @@ const draw_canvas = (board, tiles, curr_queens) => {
 *draw_border() is the function that draws a border around the edge of the canvas.
 *@param {canvas node} board: canvas to draw border on.
 */
-const draw_border = (board) => {
-	let ctx = board.getContext("2d");
+function draw_border(board) {
+	var ctx = board.getContext("2d");
 	//border style
 	ctx.strokeStyle = "black";
 	ctx.strokeRect(0, 0, board.width, board.height);
-}
+};
 
 /*
 *draw_queen() is the main function for drawing queen steps on the board. Takes in 3 modes,
@@ -73,22 +75,23 @@ const draw_border = (board) => {
 *	[row, col] = [index of array, data at index].
 *@param {string} mode: color string representing mode of queen being placed as explained above.
 */
-const draw_queen = (board, size, pos, mode) => {
+function draw_queen(board, size, pos, mode) {
+	//used to offset and place queens
+	var spacing = board.width/size;	
+
 	//get context and set up for drawing queens
 	var ctx = board.getContext("2d");
-	ctx.font = "24px Arial";
+	ctx.font = spacing/2 + "px Arial";
 	ctx.fillStyle = mode;
 
-	//used to offset and place queens
-	var spacing = board.width/size;
-
 	//x_pos = x column + offset
-	var x_pos = (pos[0] * spacing) + (spacing/3);
+	var x_pos = (pos[0] * spacing) + (spacing/4);
 	//y_pos = y row + offset
 	var y_pos = (pos[1] * spacing) + 2*(spacing/3);
-	ctx.fillText("Q", x_pos, y_pos);
+	console.log(size, pos[0], pos[1], spacing, x_pos, y_pos);
+	ctx.fillText(uni_queen, x_pos, y_pos);
 	return INCREMENT_TRIGGER;
-}
+};
 
 /*
 *draw_queens() is the function used to draw the currently placed queens on the canvas in black to
@@ -99,22 +102,23 @@ const draw_queen = (board, size, pos, mode) => {
 *	[row, col] = [index of array, data at index]. This will be an empty array before algorithm is
 * 	started.
 */
-const draw_queens = (board, size, curr_queens) => {
+function draw_queens(board, size, curr_queens) {
+	//used to offset and place queens
+	var spacing = board.width/size;	
+
 	//get context and set up for drawing queens
 	var ctx = board.getContext("2d");
-	ctx.font = "24px Arial";
+	ctx.font = spacing/2 + "px Arial";
 	ctx.fillStyle = "black";
-
-	//used to offset and place queens
-	var spacing = board.width/size;
 	
 	//draw queens to board
 	curr_queens.forEach((queen, index) => {
 		//x_pos = x column + offset
-		var x_pos = (index * spacing) + (spacing/3);
+		var x_pos = (index * spacing) + (spacing/4);
 		//y_pos = y row + offset
 		var y_pos = (queen * spacing) + 2*(spacing/3);
-		ctx.fillText("Q", x_pos, y_pos);
+		console.log(size, queen, index, spacing, x_pos, y_pos);
+		ctx.fillText(uni_queen, x_pos, y_pos);
 	});
 };
 
@@ -124,7 +128,7 @@ const draw_queens = (board, size, curr_queens) => {
 *@param {canvas node} board: main canvas node for drawing board and pieces.
 *@param {int} size: dimensions of board in tiles (board is tilesXtiles size).
 */
-const draw_noSoln = (board, size) => {
+function draw_noSoln(board, size) {
 	//y position on canvas
 	let y_pos = 200;
 	//padding around text
@@ -147,4 +151,6 @@ const draw_noSoln = (board, size) => {
 	ctx.fillStyle = "black";
 	ctx.textAlign = "center";
 	ctx.fillText(prompt, text_pos, y_pos);
-}
+	//reset for future queen placement
+	ctx.textAlign = "start";
+};

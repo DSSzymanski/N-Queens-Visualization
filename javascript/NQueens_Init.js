@@ -2,41 +2,28 @@
 *init() is used upon document load to fill in the html elements
 *@return nothing
 */
-const init = () => {
+function init() {
 	//select main div within body
 	var mainDiv = document.querySelector("#main");
-	
+	//add title bar
 	init_title(mainDiv);
-	init_taskbar_and_canvas(mainDiv);
-};
-
-/**
-*init_taskbar_and_canvas() is used upon document load to taskbar and canvas
-*	elements inside a content container
-*@param {node} container: The container to hold the title element
-*@return nothing
-*/
-const init_taskbar_and_canvas = (container) => {
-	var content_div = document.createElement("div");
-	content_div.id = "content_container";
-	container.appendChild(content_div);
 	/*
 	*add task bar. contains both the slider for the 
 	*board size and the solve button
 	*/
-	init_taskbar(content_div);
-
+	init_taskbar(mainDiv);
 	//add canvas
-	init_canvas(content_div);	
-}
+	init_canvas(mainDiv);
 
+	init_legend(mainDiv);
+};
 
 /**
 *init_title() is used upon document load to add the h1 header title
 *@param {node} container: The container to hold the title element
 *@return nothing
 */
-const init_title = (container) => {
+function init_title(container) {
 	//create container and h1 to store title
 	var div = document.createElement("div");
 	var text = document.createElement("h1");
@@ -54,15 +41,10 @@ const init_title = (container) => {
 *@param {node} container: The container to hold the title element
 *@return nothing
 */
-const init_taskbar = (container) => {
+function init_taskbar(container) {
 	//create and setup container to store taskbar elements
 	var div = document.createElement("div");
 	div.id = "taskbar";
-
-	var text = document.createElement("h5");
-	text.innerText = "Input Controls";
-	div.appendChild(text);
-
 	//add slider to taskbar
 	init_sizeSlider(div);
 	init_intervalSlider(div);
@@ -80,7 +62,7 @@ const init_taskbar = (container) => {
 *@param {node} container: The container to hold the title element
 *@return nothing
 */
-const init_sizeSlider = (container) => {
+function init_sizeSlider(container) {
 	//create and setup container to store slider elements
 	var div = document.createElement("div");
 	div.id = "sizeSlider_container";
@@ -128,7 +110,7 @@ const init_sizeSlider = (container) => {
 *@param {node} container: The container to hold the title element
 *@return nothing
 */
-const init_intervalSlider = (container) => {
+function init_intervalSlider(container) {
 	//create and setup container to store slider elements
 	var div = document.createElement("div");
 	div.id = "intervalSlider_container";
@@ -171,7 +153,7 @@ const init_intervalSlider = (container) => {
 *@param {node} container: The container to hold the title element
 *@return nothing
 */
-const init_solveBtn = (container) => {
+function init_solveBtn(container) {
 	//create and setup container to store the button element
 	var div = document.createElement("div");
 	div.id = "solveBtn_container";
@@ -192,6 +174,7 @@ const init_solveBtn = (container) => {
 		reset_stepCounter();
 		//endstate waits for the algorithm inside solve as well as the drawing to end.
 		//will draw over canvas if no solution is found.
+		console.log(sizeValue, intervalValue);
 		const end_state = await solve(canvas, sizeValue, intervalValue, []);
 		if (end_state === false) {
 			draw_noSoln(canvas, sizeValue);
@@ -209,7 +192,7 @@ const init_solveBtn = (container) => {
 *@param {node} container: The container to hold the title element
 *@return nothing
 */
-const init_canvas = (container) => {
+function init_canvas(container) {
 	//create and setup container to store the button element
 	var div = document.createElement("div");
 	div.id = "canvas_div";
@@ -224,7 +207,6 @@ const init_canvas = (container) => {
 	div.appendChild(canvas);
 	container.appendChild(div);
 
-	init_legend(div);
 	//get default value from slider and draw blank board to start
 	const default_size = document.getElementById("size_slider").value;
 	draw_canvas(canvas, default_size, []);
@@ -237,7 +219,7 @@ const init_canvas = (container) => {
 *@param {node} container: The container to hold the title element
 *@return nothing
 */
-const init_stepCounter = (container) => {
+function init_stepCounter(container) {
 	//create and setup container to store the button element
 	var div = document.createElement("div");
 	div.id = "stepCounter_container";
@@ -259,7 +241,7 @@ const init_stepCounter = (container) => {
 };
 
 /**
-*init_legend() is used upon document load to add the queen color legend
+*init_legendr() is used upon document load to add the queen color legend
 *	to the bottom of the element to show different types of queen placement.
 *	Currently 3 types:
 *		Test - test for placement
@@ -268,7 +250,7 @@ const init_stepCounter = (container) => {
 *@param {node} container: The container to hold the title element
 *@return nothing
 */
-const init_legend = (container) => {
+function init_legend(container) {
 	var div = document.createElement("div");
 	div.id = "legend_container";
 
